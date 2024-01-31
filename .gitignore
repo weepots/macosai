@@ -36,9 +36,6 @@
 /coreml_server/! .env.example
 /coreml_server/.vscode
 
-/coreml_server/StableDiffusion/model-1-5
-/coreml_server/SuperResolution/aesrgan.mlmodelc
-/coreml_server/SuperResolution/aesrgan.swift
-/coreml_server/SuperResolution/realesrgan512.swift
-/coreml_server/SuperResolution/realesrgan512.mlmodelc
+/coreml_server/StableDiffusion/
+/coreml_server/SuperResolution/
 .DS_Store
