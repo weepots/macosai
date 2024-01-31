@@ -22,4 +22,23 @@
 /frontend/yarn-debug.log*
 /frontend/yarn-error.log*
 
+
+
+/coreml_server/.build
+/coreml_server/xcuserdata
+/coreml_server/*.xcodeproj
+/coreml_server/DerivedData/
+/coreml_server/.DS_Store
+/coreml_server/db.sqlite
+/coreml_server/.swiftpm
+/coreml_server/.env
+/coreml_server/.env.*
+/coreml_server/! .env.example
+/coreml_server/.vscode
+
+/coreml_server/StableDiffusion/model-1-5
+/coreml_server/SuperResolution/aesrgan.mlmodelc
+/coreml_server/SuperResolution/aesrgan.swift
+/coreml_server/SuperResolution/realesrgan512.swift
+/coreml_server/SuperResolution/realesrgan512.mlmodelc
 .DS_Store
