@@ -39,3 +39,6 @@
 /coreml_server/StableDiffusion/
 /coreml_server/SuperResolution/
 .DS_Store
+
+/backend/node_modules
+/backend/.env
