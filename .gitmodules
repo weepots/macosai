@@ -1,0 +1,3 @@
+[submodule "coreml_server"]
+	path = coreml_server
+	url = https://github.com/weepots/coreml_server.git
