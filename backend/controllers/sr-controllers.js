@@ -2,6 +2,7 @@ const axios = require("axios");
 const HttpError = require("../models/http-error");
 
 const startProcess = async (req, res, next) => {
+  console.log("reached endpoint")
   let data = { Message: "Super Resolution Start start Failed" };
   try {
 

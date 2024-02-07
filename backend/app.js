@@ -11,17 +11,17 @@ const srRoutes = require("./routes/sr-routes")
 const app = express();
 
 app.use(bodyParser.json());
-
+app.use(cors())
 
 app.options('*', cors())
-app.use((req, res, next) => {
-  // Tell the browser which domain to allow client requests from, postman will not care about such headers
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  // Controls which headers incoming requests might have
-  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, OPTIONS");
-  next();
-});
+// app.use((req, res, next) => {
+//   // Tell the browser which domain to allow client requests from, postman will not care about such headers
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   // Controls which headers incoming requests might have
+//   res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+//   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, OPTIONS");
+//   next();
+// });
 // const corsOptions = {
 //   origin: false,
 //   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
