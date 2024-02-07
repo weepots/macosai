@@ -14,4 +14,4 @@ Model: realesrgan512
 
 ### Stable Diffusion
 Model: stableDiffusion1.5
-![plot](./readmeMedia/SuperResolutionSC.png)
+![plot](./readmeMedia/stableDiffusionSC.png)
