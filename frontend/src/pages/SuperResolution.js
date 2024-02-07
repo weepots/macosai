@@ -6,16 +6,18 @@ import FileUploadButton from "../components/ui/FileUploadButton";
 import Navbar from "../components/Navbar";
 import { Buffer } from "buffer";
 import {serverAddress} from '../Constants'
+import { base64ToImageObjectURL } from "../helpers";
 
 function SuperResolution() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [returnImage, SetReturnImage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {}, [selectedImage]);
 
-  useEffect(() => {
-    console.log(returnImage);
-  }, [returnImage]);
+  useEffect(() => {}, [returnImage]);
+
+  useEffect(()=>{}, [isLoading])
 
   async function convertAndSend(objectURL, serverEndpoint) {
     try {
@@ -39,6 +41,7 @@ function SuperResolution() {
       // };
       // const serverResponse = axios.post(serverEndpoint, requestBody);
       // Send the base64 data to the server
+      setIsLoading(true)
       const requestOptions = {
         method: "POST",
         headers: {
@@ -52,9 +55,9 @@ function SuperResolution() {
       const serverResponse = await fetch(serverEndpoint, requestOptions);
       const buffer = await serverResponse.arrayBuffer();
       const base64Image = Buffer.from(buffer).toString("base64");
-      console.log(base64Image);
       SetReturnImage(base64ToImageObjectURL(base64Image));
-
+      
+      setIsLoading(false)
       // const responseData = await serverResponse.json();
       // const responseImageBase64 = base64ToImageObjectURL(responseData.image);
       // console.log(responseData);
@@ -63,31 +66,31 @@ function SuperResolution() {
       console.error("Error when sending image to server:    ", error);
     }
   }
-  function base64ToImageObjectURL(base64String) {
-    // Convert base64 string to ArrayBuffer
-    // base64String = "data:image/png;base64," + base64String;
-    const binaryString = atob(base64String);
-    const length = binaryString.length;
-    const bytes = new Uint8Array(length);
-    for (let i = 0; i < length; i++) {
-      bytes[i] = binaryString.charCodeAt(i);
-    }
+  // function base64ToImageObjectURL(base64String) {
+  //   // Convert base64 string to ArrayBuffer
+  //   // base64String = "data:image/png;base64," + base64String;
+  //   const binaryString = atob(base64String);
+  //   const length = binaryString.length;
+  //   const bytes = new Uint8Array(length);
+  //   for (let i = 0; i < length; i++) {
+  //     bytes[i] = binaryString.charCodeAt(i);
+  //   }
 
-    // Create Blob from ArrayBuffer
-    const blob = new Blob([bytes], { type: "image/jpeg" }); // Adjust the type based on your image format
+  //   // Create Blob from ArrayBuffer
+  //   const blob = new Blob([bytes], { type: "image/png" }); // Adjust the type based on your image format
 
-    // Create object URL from Blob
-    const objectURL = URL.createObjectURL(blob);
+  //   // Create object URL from Blob
+  //   const objectURL = URL.createObjectURL(blob);
 
-    // const link = document.createElement("a");
-    // link.download = "output.jpg";
-    // link.href = objectURL;
-    // document.body.appendChild(link);
-    // link.click();
-    // document.body.removeChild(link);
-    // URL.revokeObjectURL(objectURL);
-    return objectURL;
-  }
+  //   // const link = document.createElement("a");
+  //   // link.download = "output.jpg";
+  //   // link.href = objectURL;
+  //   // document.body.appendChild(link);
+  //   // link.click();
+  //   // document.body.removeChild(link);
+  //   // URL.revokeObjectURL(objectURL);
+  //   return objectURL;
+  // }
 
   function uploadHander() {
     const endpoint = serverAddress.servers.coreml+serverAddress.routes.superResolution
@@ -95,18 +98,18 @@ function SuperResolution() {
   }
 
   return (
-    <div>
+    <div class="h-dvh">
       <Navbar name="Super Resolution" />
-      <div class="flex flex-row space-x-20 justify-center px-10 w-100vw h-screen">
-        <div class="flex flex-col justify-center w-3/6">
+      <div class="flex flex-row space-x-20 justify-center px-10 w-100vw h-4/6">
+        <div class="flex flex-col justify-center w-3/6 h-full">
           <RoundedImageBox selectedImage={selectedImage} />
-          <div class="flex flex-row space-x-10">
+          <div class="flex flex-row">
             <FileUploadButton setSelectedImage={setSelectedImage} selectedImage={selectedImage} />
             <RoundedDarkButton text="Upload" onClick={uploadHander} />
           </div>
         </div>
-        <div class="flex flex-col justify-center w-3/6">
-          <RoundedImageBox selectedImage={returnImage} />
+        <div class="flex flex-col justify-center w-3/6 h-full">
+          <RoundedImageBox selectedImage={returnImage} loadState = {isLoading}/>
           <RoundedLightButton text="Super Resolution" />
         </div>
       </div>
