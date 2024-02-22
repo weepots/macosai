@@ -5,19 +5,20 @@ import RoundedImageBox from "../components/ui/RoundedImageBox";
 import FileUploadButton from "../components/ui/FileUploadButton";
 import Navbar from "../components/Navbar";
 import { Buffer } from "buffer";
-import {serverAddress} from '../Constants'
+import { serverAddress } from "../Constants";
 import { base64ToImageObjectURL } from "../helpers";
+import axios from "axios";
 
 function SuperResolution() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [returnImage, SetReturnImage] = useState(null);
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {}, [selectedImage]);
 
   useEffect(() => {}, [returnImage]);
 
-  useEffect(()=>{}, [isLoading])
+  useEffect(() => {}, [isLoading]);
 
   async function convertAndSend(objectURL, serverEndpoint) {
     try {
@@ -35,33 +36,16 @@ function SuperResolution() {
 
         reader.readAsDataURL(blob);
       });
-
-      // const requestBody = {
-      //   body: JSON.stringify({ image: base64Data }),
-      // };
-      // const serverResponse = axios.post(serverEndpoint, requestBody);
-      // Send the base64 data to the server
-      setIsLoading(true)
-      const requestOptions = {
-        method: "POST",
+      setIsLoading(true);
+      const options = {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          image: base64Data,
-        }),
       };
 
-      const serverResponse = await fetch(serverEndpoint, requestOptions);
-      const buffer = await serverResponse.arrayBuffer();
-      const base64Image = Buffer.from(buffer).toString("base64");
-      SetReturnImage(base64ToImageObjectURL(base64Image));
-      
-      setIsLoading(false)
-      // const responseData = await serverResponse.json();
-      // const responseImageBase64 = base64ToImageObjectURL(responseData.image);
-      // console.log(responseData);
-      // SetReturnImage(responseImageBase64);
+      const serverResponse = await axios.post(serverEndpoint, { image: base64Data }, options);
+      SetReturnImage(base64ToImageObjectURL(serverResponse.data[0]));
+      setIsLoading(false);
     } catch (error) {
       console.error("Error when sending image to server:    ", error);
     }
@@ -93,7 +77,7 @@ function SuperResolution() {
   // }
 
   function uploadHander() {
-    const endpoint = serverAddress.servers.coreml+serverAddress.routes.superResolution
+    const endpoint = serverAddress.servers.coreml + serverAddress.routes.superResolution;
     convertAndSend(selectedImage, endpoint);
   }
 
@@ -109,7 +93,7 @@ function SuperResolution() {
           </div>
         </div>
         <div class="flex flex-col justify-center w-3/6 h-full">
-          <RoundedImageBox selectedImage={returnImage} loadState = {isLoading}/>
+          <RoundedImageBox selectedImage={returnImage} loadState={isLoading} />
           <RoundedLightButton text="Super Resolution" />
         </div>
       </div>

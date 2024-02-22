@@ -1,45 +1,54 @@
 import Navbar from "../components/Navbar";
 import Searchbar from "../components/ui/Searchbar";
 import RoundedImageBox from "../components/ui/RoundedImageBox";
-import { serverAddress } from "../Constants"
+import { serverAddress } from "../Constants";
 
 import React, { useState, useEffect } from "react";
 import { Buffer } from "buffer";
+import axios from "axios";
 
 function StableDiffusion() {
   const [searchText, setSearchText] = useState("");
   const [returnImage, SetReturnImage] = useState(null);
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   function searchHandler() {
-    const endpoint = serverAddress.servers.coreml + serverAddress.routes.stableDiffusion
+    const endpoint = serverAddress.servers.coreml + serverAddress.routes.stableDiffusion;
     text2image(searchText, endpoint);
   }
 
   function onChangeHandler(text) {
     setSearchText(text);
   }
-  useEffect(() => { }, [returnImage]);
-  useEffect(() => { }, [isLoading])
+  useEffect(() => {}, [returnImage]);
+  useEffect(() => {}, [isLoading]);
 
   async function text2image(prompt, serverEndpoint) {
-    const requestOptions = {
-      method: "POST",
+    // const requestOptions = {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     prompt: prompt,
+
+    //   }),
+    // };
+    const options = {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        prompt: prompt,
-      }),
     };
     try {
-      setIsLoading(true)
-      SetReturnImage(null)
-      const serverResponse = await fetch(serverEndpoint, requestOptions);
-      const buffer = await serverResponse.arrayBuffer();
-      const base64Image = Buffer.from(buffer).toString("base64");
-      SetReturnImage(base64ToImageObjectURL(base64Image));
-      setIsLoading(false)
+      setIsLoading(true);
+      SetReturnImage(null);
+      // const serverResponse = await fetch(serverEndpoint, {prompt:prompt, seed:"93", numImage:"3"}, options);
+      // const buffer = await serverResponse.arrayBuffer();
+      // const base64Image = Buffer.from(buffer).toString("base64");
+      const serverResponse = await axios.post(serverEndpoint, { prompt: prompt, seed: "93", numImages: "2" }, options);
+      SetReturnImage(base64ToImageObjectURL(serverResponse.data[0]));
+      // SetReturnImage(base64ToImageObjectURL(base64Image));
+      setIsLoading(false);
       console.log(serverResponse.body);
     } catch (error) {
       console.log("Something wrong happened when requesting for text2image: " + error);

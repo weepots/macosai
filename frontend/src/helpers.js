@@ -15,7 +15,7 @@ export function base64ToImageObjectURL(base64String) {
   const objectURL = URL.createObjectURL(blob);
 
   // const link = document.createElement("a");
-  // link.download = "output.jpg";
+  // link.download = "output.png";
   // link.href = objectURL;
   // document.body.appendChild(link);
   // link.click();
