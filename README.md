@@ -1,7 +1,7 @@
 # macosai
 Final Year Project
 This project involves a fullstack application that uses Vapor to server CoreML services as RestAPIs to a frontend React Application.
-CoreML models are obtained from the CoreML zoo.
+CoreML models are obtained from the CoreML zoo. Checkout the Image Editor UI integration in the imageEditor branch.
 
 ## CoreML Model Services
 ### Background Remover
