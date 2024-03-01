@@ -3,6 +3,7 @@ import React, { useState } from "react";
 const useModal = () => {
   const [displayModal, setDisplayModal] = useState<boolean>(false);
   const [displayAIModal, setDisplayAIModal] = useState<boolean>(false);
+  const [displaySearchModal, setDisplaySearchModal] = useState<boolean>(false);
 
   const openModal = () => {
     setDisplayModal(true);
@@ -19,6 +20,13 @@ const useModal = () => {
     setDisplayAIModal(false);
   };
 
+  const openSearchModal = () =>{
+    setDisplaySearchModal(true);
+  }
+  const closeSearchModal = () =>{
+    setDisplaySearchModal(false);
+  }
+
   return {
     displayModal,
     openModal,
@@ -26,6 +34,9 @@ const useModal = () => {
     displayAIModal,
     openAIModal,
     closeAIModal,
+    displaySearchModal,
+    openSearchModal,
+    closeSearchModal
   };
 };
 

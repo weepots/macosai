@@ -31,6 +31,9 @@ const useTool = (
   const onClickImageGenButton = () => {
     modal.openAIModal();
   };
+  const onClickImageSearchButton = () =>{
+    modal.openSearchModal();
+  }
 
   const removeBackground = (selectedItems: ReturnType<typeof useSelection>["selectedItems"]) => {
     if (selectedItems.length === 1 && selectedItems[0].attrs["data-item-type"] === "image") {
@@ -115,6 +118,8 @@ const useTool = (
         return superResolution(selectedItems);
       case "ai-generate":
         return onClickImageGenButton();
+      case "image-search":
+        return onClickImageSearchButton();
       case "hotkey":
         return onClickHotkeyButton();
       default:

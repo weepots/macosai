@@ -27,3 +27,6 @@
 
 /backend/node_modules
 /backend/.env
+
+/clip_service/fastvenv
+/clip_service/__pycache__

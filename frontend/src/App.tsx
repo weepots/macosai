@@ -34,6 +34,7 @@ import useWorkHistory from "./hook/useWorkHistory";
 import useI18n from "./hook/usei18n";
 import { initialStageDataList } from "./redux/initilaStageDataList";
 import ImageGenUI from "./layout/ImageGenUI";
+import ImageSearchUI from "./layout/ImageSearchUI";
 
 export type FileKind = {
   "file-id": string;
@@ -151,6 +152,17 @@ function App() {
       </Modal.Header>
       <Modal.Body>
         <ImageGenUI />
+      </Modal.Body>
+    </Modal>
+  );
+  
+  const imageSearchModal = (
+    <Modal show={modal.displaySearchModal} onHide={modal.closeSearchModal}>
+      <Modal.Header closeButton>
+        <Modal.Title>Image Search</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <ImageSearchUI />
       </Modal.Body>
     </Modal>
   );
@@ -344,6 +356,7 @@ function App() {
     <Layout header={header} navBar={navBar} settingBar={settingBar}>
       {hotkeyModal}
       {imageGenModal}
+      {imageSearchModal}
       <View onSelect={onSelectItem} stage={stage}>
         {stageData.length ? sortedStageData.map((item) => renderObject(item)) : null}
         <Transformer

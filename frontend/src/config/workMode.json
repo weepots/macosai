@@ -66,6 +66,12 @@
     "icon": "lightbulb"
   },
   {
+    "id":"image-search",
+    "name": "Image Search",
+    "desc": "Image Search",
+    "icon": "search"
+  },
+  {
     "id": "hotkey",
     "name": "Shortcut",
     "desc": "Keyboard Shortcut",
