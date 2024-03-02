@@ -14,3 +14,16 @@ Model: realesrgan512
 ### Stable Diffusion
 Model: stableDiffusion1.5
 ![plot](./readmeMedia/imageEditorSC.png)
+
+
+## Image Search Services
+Model: [openai/clip-vit-base-patch32](https://huggingface.co/openai/clip-vit-base-patch32)
+dataset: [conceptual_captions](https://huggingface.co/datasets/conceptual_captions)
+Only 1000 images from this dataset has been added to the Solr Database
+### Text to Image
+![plot](./readmeMedia/textSearchSC.png)
+
+### Image to Image
+![plot](./readmeMedia/imageSearchSC.png)
+
+
