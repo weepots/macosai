@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form, Col, Row, Dropdown, Spinner, Figure, Stack } from "react-bootstrap";
+import { Button, Form, Col, Row, Dropdown, Spinner, Figure, Stack, Tab, Tabs } from "react-bootstrap";
 import axios from "axios";
 import { nanoid } from "nanoid";
-import { Buffer } from "buffer";
 import useImageAsset from "../hook/useImageAsset";
+import ImageSearchTextComponent from "./ImageSearchTextComponent";
+import ImageSearchImageComponent from "./ImageSearchImageComponent";
 import alignStyles from "../style/align.module.css";
 import sizeStyles from "../style/size.module.css";
 import spaceStyles from "../style/space.module.css";
 import overflowStyles from "../style/overflow.module.css";
+import fontStyles from "../style/font.module.css";
 
 const ImageSearchUI: React.FC = () => {
   const [searchText, setSearchText] = useState("Astronaut riding a horse");
   const { setImageAsset, getAllImageAsset } = useImageAsset();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [seed, setSeed] = useState("93");
   const [numImages, setNumImages] = useState<string>("1");
   const [base64Images, setBase64Images] = useState<string[]>([]);
 
@@ -22,9 +23,6 @@ const ImageSearchUI: React.FC = () => {
   }, [base64Images]);
   const changeSearchText = (e: React.BaseSyntheticEvent) => {
     setSearchText(e.currentTarget.value as string);
-  };
-  const changeSeed = (e: React.BaseSyntheticEvent) => {
-    setSeed(e.currentTarget.value as string);
   };
 
   const handleDropdownSelect = (eventKey: string | null) => {
@@ -35,7 +33,7 @@ const ImageSearchUI: React.FC = () => {
   };
 
   const handleSubmit = () => {
-    imageSearchAPI(prompt, seed, numImages);
+    imageSearchTextAPI(searchText, numImages);
   };
 
   const addToProjectHandler = (event: React.MouseEvent) => {
@@ -45,48 +43,21 @@ const ImageSearchUI: React.FC = () => {
       {
         type: "image",
         id: nanoid(),
-        name: `ai-gen-${imageId}`,
+        name: `knn-search-${imageId}`,
         src: imageString,
       },
     ];
     setImageAsset(result);
   };
 
-  function base64ToImageObjectURL(base64String: string) {
-    // Convert base64 string to ArrayBuffer
-    // base64String = "data:image/png;base64," + base64String;
-    const binaryString = atob(base64String);
-    const length = binaryString.length;
-    const bytes = new Uint8Array(length);
-    for (let i = 0; i < length; i++) {
-      bytes[i] = binaryString.charCodeAt(i);
-    }
-
-    // Create Blob from ArrayBuffer
-    const blob = new Blob([bytes], { type: "image/png" }); // Adjust the type based on your image format
-
-    // Create object URL from Blob
-    const objectURL = URL.createObjectURL(blob);
-
-    // const link = document.createElement("a");
-    // link.download = "output.png";
-    // link.href = objectURL;
-    // document.body.appendChild(link);
-    // link.click();
-    // document.body.removeChild(link);
-    // URL.revokeObjectURL(objectURL);
-    return objectURL;
-  }
-
-  const imageSearchAPI = async (searchText: string, seed: string, numImages: string) => {
+  const imageSearchTextAPI = async (searchText: string, numImages: string) => {
     console.log(searchText);
-    console.log(seed);
     console.log(numImages);
     setIsLoading(true);
     console.log(isLoading);
     try {
-      const serverEndpoint = "http://localhost:5000/stableDiffuse";
-      const serverResponse = await axios.post(serverEndpoint, { searchText, seed, numImages });
+      const serverEndpoint = "http://localhost:8000/search/text2image";
+      const serverResponse = await axios.post(serverEndpoint, { params: { q: searchText, images: numImages } });
       const base64Images = serverResponse.data;
       base64Images.map((image: string) => {
         setBase64Images((oldArray) => [...oldArray, `data:image/png;base64,${image}`]);
@@ -104,64 +75,72 @@ const ImageSearchUI: React.FC = () => {
   };
 
   return (
-    <div>
-      <Form>
-        <Form.Group className="mb-3" controlId="iconKeyword">
-          {/* <Form.Label>{}</Form.Label> */}
-          <Row>
-            <Col xs={8}>
-              <Form.Label>Search Image with Text</Form.Label>
-              <Form.Control onChange={changeSearchText} type="text" placeholder={prompt} />
-            </Col>
-            <Col>
-              <Form.Label>Seed</Form.Label>
-              <Form.Control onChange={changeSeed} type="text" placeholder={seed.toString()} />
-            </Col>
-          </Row>
-        </Form.Group>
-        <Row>
-          <Col>
-            <Dropdown onSelect={handleDropdownSelect}>
-              <Dropdown.Toggle variant="success" id="dropdown-basic">
-                Images: {numImages}
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item eventKey={1}>1</Dropdown.Item>
-                <Dropdown.Item eventKey={2}>2</Dropdown.Item>
-                <Dropdown.Item eventKey={3}>3</Dropdown.Item>
-                <Dropdown.Item eventKey={4}>4</Dropdown.Item>
-                <Dropdown.Item eventKey={5}>5</Dropdown.Item>
-                <Dropdown.Item eventKey={6}>6</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </Col>
-          <Col align="end">
-            <Button onClick={handleSubmit} disabled={isLoading}>
-              Submit Query
-            </Button>
-          </Col>
-          {isLoading && (
-            <Col xs={2}>
-              <Spinner animation="border" variant="primary" />
-            </Col>
-          )}
-        </Row>
-      </Form>
-      <div className={[alignStyles.absoluteCenter, sizeStyles["min-h-55vh"]].join(" ")}>
-        <Stack className={[spaceStyles["mt2rem"], overflowStyles.scroll].join(" ")}>
-          {base64Images.map((item, index) => (
-            <Figure className={alignStyles.absoluteCenter} key={index}>
-              <Figure.Image width={200} height={200} alt="171x180" src={item} />
-              <div className={[spaceStyles["ml1rem"]].join(" ")}>
-                <Button id={`${index}`} onClick={addToProjectHandler}>
-                  Add to Project
-                </Button>
-              </div>
-            </Figure>
-          ))}
-        </Stack>
-      </div>
-    </div>
+    <Tabs defaultActiveKey="textSearch" id="uncontrolled-tab-example" className="mb-3">
+      <Tab eventKey="textSearch" title="Search with Text">
+        <ImageSearchTextComponent />
+      </Tab>
+      <Tab eventKey="imageSearch" title="Search with Image">
+        <ImageSearchImageComponent />
+      </Tab>
+    </Tabs>
+
+    // <div>
+    //   <Form>
+    //     <Form.Group className="mb-3" controlId="iconKeyword">
+    //       <Row>
+    //         <Col>
+    //           <Form.Label>Search Image with Text</Form.Label>
+    //           <Form.Control onChange={changeSearchText} type="text" placeholder={searchText} />
+    //         </Col>
+    //       </Row>
+    //       <Row>
+    //         <div className="mt-3"></div>
+    //         <div className={fontStyles.font1rem}>Search Image with Image</div>
+    //       </Row>
+    //     </Form.Group>
+    //     <Row>
+    //       <Col>
+    //         <Dropdown onSelect={handleDropdownSelect}>
+    //           <Dropdown.Toggle variant="success" id="dropdown-basic">
+    //             Images: {numImages}
+    //           </Dropdown.Toggle>
+    //           <Dropdown.Menu>
+    //             <Dropdown.Item eventKey={1}>1</Dropdown.Item>
+    //             <Dropdown.Item eventKey={2}>2</Dropdown.Item>
+    //             <Dropdown.Item eventKey={3}>3</Dropdown.Item>
+    //             <Dropdown.Item eventKey={4}>4</Dropdown.Item>
+    //             <Dropdown.Item eventKey={5}>5</Dropdown.Item>
+    //             <Dropdown.Item eventKey={6}>6</Dropdown.Item>
+    //           </Dropdown.Menu>
+    //         </Dropdown>
+    //       </Col>
+    //       <Col align="end">
+    //         <Button onClick={handleSubmit} disabled={isLoading}>
+    //           Submit Query
+    //         </Button>
+    //       </Col>
+    //       {isLoading && (
+    //         <Col xs={2}>
+    //           <Spinner animation="border" variant="primary" />
+    //         </Col>
+    //       )}
+    //     </Row>
+    //   </Form>
+    //   <div className={[alignStyles.absoluteCenter, sizeStyles["min-h-55vh"]].join(" ")}>
+    //     <Stack className={[spaceStyles["mt2rem"], overflowStyles.scroll].join(" ")}>
+    //       {base64Images.map((item, index) => (
+    //         <Figure className={alignStyles.absoluteCenter} key={index}>
+    //           <Figure.Image width={200} height={200} alt="171x180" src={item} />
+    //           <div className={[spaceStyles["ml1rem"]].join(" ")}>
+    //             <Button id={`${index}`} onClick={addToProjectHandler}>
+    //               Add to Project
+    //             </Button>
+    //           </div>
+    //         </Figure>
+    //       ))}
+    //     </Stack>
+    //   </div>
+    // </div>
   );
 };
 export default ImageSearchUI;

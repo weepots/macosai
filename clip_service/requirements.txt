@@ -1,0 +1,10 @@
+cors
+opencv-python
+flask
+tqdm
+datasets
+torch
+transformers
+requests
+pandas
+pillow
