@@ -1,8 +1,8 @@
 # React Based Image Editor with Core ML services
 
-This project involves a fullstack application that uses Vapor to server CoreML services as RestAPIs to a frontend React Application and a Apache Solr Image Search Server.
+This project involves a fullstack application that uses Vapor to server CoreML services as RestAPIs to a frontend React Application and a Apache Solr Image Search Server.  
 CoreML models are obtained from the [CoreML Zoo](https://github.com/john-rocky/CoreML-Models).  
-The Frontend UI is an image editor, special thanks to swimmingkiim.
+The Frontend UI is a modified version of an image editor, built by swimmingkiim.
 The original repository for the UI can be found here: https://github.com/swimmingkiim/react-image-editor
 
 ## CoreML Model Services
@@ -54,8 +54,9 @@ cd macosai
 ### Clone CoreML Vapor Server
 
 ```
-git clone https://github.com/weepots/coreml_server/tree/32cbd0b58b3c316f73b7a03301bc83878100451c
+git clone https://github.com/weepots/coreml_server.git
 ```
+Go to the [Core ML server repo](https://github.com/weepots/coreml_server) for more instructions on setting up the server.
 
 ### Start CoreML Vapor Server
 
