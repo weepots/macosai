@@ -1,0 +1,36 @@
+2024-03-01 04:40:47.520 INFO  (main) [] o.e.j.u.log Logging initialized @6522ms to org.eclipse.jetty.util.log.Slf4jLog
+2024-03-01 04:40:47.804 INFO  (main) [] o.e.j.s.Server jetty-9.4.44.v20210927; built: 2021-09-27T23:02:44.612Z; git: 8da83308eeca865e495e53ef315a249d63ba9332; jvm 19.0.2+7-44
+2024-03-01 04:40:48.491 INFO  (main) [] o.a.s.s.CoreContainerProvider Using logger factory org.apache.logging.slf4j.Log4jLoggerFactory
+2024-03-01 04:40:48.506 INFO  (main) [] o.a.s.s.CoreContainerProvider  ___      _       Welcome to Apache Solr™ version 9.0.0
+2024-03-01 04:40:48.506 INFO  (main) [] o.a.s.s.CoreContainerProvider / __| ___| |_ _   Starting in standalone mode on port 8983
+2024-03-01 04:40:48.506 INFO  (main) [] o.a.s.s.CoreContainerProvider \__ \/ _ \ | '_|  Install dir: C:\Users\Alex\Documents\fyp\solr-9.0.0
+2024-03-01 04:40:48.506 INFO  (main) [] o.a.s.s.CoreContainerProvider |___/\___/_|_|    Start time: 2024-03-01T04:40:48.506853600Z
+2024-03-01 04:40:48.518 INFO  (main) [] o.a.s.s.CoreContainerProvider Solr Home: C:\Users\Alex\Documents\fyp\solr-9.0.0\server\solr (source: system property: solr.solr.home)
+2024-03-01 04:40:48.520 INFO  (main) [] o.a.s.c.SolrXmlConfig Loading solr.xml from C:\Users\Alex\Documents\fyp\solr-9.0.0\server\solr\solr.xml
+2024-03-01 04:40:49.658 WARN  (main) [] o.a.s.u.StartupLoggingUtils Jetty request logging enabled. Will retain logs for last 3 days. See chapter "Configuring Logging" in reference guide for how to configure.
+2024-03-01 04:40:49.668 WARN  (main) [] o.a.s.c.CoreContainer Not all security plugins configured!  authentication=disabled authorization=disabled.  Solr is only as secure as you make it. Consider configuring authentication/authorization before exposing Solr to users internal or external.  See https://s.apache.org/solrsecurity for more info
+2024-03-01 04:41:09.590 WARN  (main) [] o.a.s.h.a.SystemInfoHandler Resolving canonical hostname for local host took 19.766 seconds, possible DNS misconfiguration. Set the 'solr.dns.prevent.reverse.lookup'  sysprop to true on startup to prevent future lookups if DNS can not be fixed.
+2024-03-01 04:41:09.834 INFO  (main) [] o.a.s.c.CorePropertiesLocator Found 1 core definitions underneath C:\Users\Alex\Documents\fyp\solr-9.0.0\server\solr
+2024-03-01 04:41:09.835 INFO  (main) [] o.a.s.c.CorePropertiesLocator Cores are: [images]
+2024-03-01 04:41:09.851 INFO  (coreLoadExecutor-10-thread-1) [] o.a.s.c.TransientSolrCoreCacheDefault Allocating transient core cache for max 2147483647 cores with initial capacity of 1024
+2024-03-01 04:41:09.916 INFO  (coreLoadExecutor-10-thread-1) [ x:images] o.a.s.c.SolrConfig Using Lucene MatchVersion: 9.0.0
+2024-03-01 04:41:10.072 INFO  (coreLoadExecutor-10-thread-1) [ x:images] o.a.s.s.IndexSchema Schema name=default-config
+2024-03-01 04:41:10.457 INFO  (main) [] o.e.j.s.h.ContextHandler Started o.e.j.w.WebAppContext@1cf2fed4{/solr,file:///C:/Users/Alex/Documents/fyp/solr-9.0.0/server/solr-webapp/webapp/,AVAILABLE}{C:\Users\Alex\Documents\fyp\solr-9.0.0\server/solr-webapp/webapp}
+2024-03-01 04:41:10.471 INFO  (main) [] o.e.j.s.RequestLogWriter Opened C:\Users\Alex\Documents\fyp\solr-9.0.0\server\logs\2024_03_01.request.log
+2024-03-01 04:41:10.507 INFO  (main) [] o.e.j.s.AbstractConnector Started ServerConnector@339bf286{HTTP/1.1, (http/1.1, h2c)}{127.0.0.1:8983}
+2024-03-01 04:41:10.507 INFO  (main) [] o.e.j.s.Server Started @29511ms
+2024-03-01 04:41:11.055 INFO  (coreLoadExecutor-10-thread-1) [ x:images] o.a.s.s.IndexSchema Loaded schema default-config/1.6 with uniqueid field id
+2024-03-01 04:41:11.055 INFO  (coreLoadExecutor-10-thread-1) [ x:images] o.a.s.c.CoreContainer Creating SolrCore 'images' using configuration from instancedir C:\Users\Alex\Documents\fyp\solr-9.0.0\server\solr\images, trusted=true
+2024-03-01 04:41:11.123 INFO  (coreLoadExecutor-10-thread-1) [ x:images] o.a.s.c.SolrCore Opening new SolrCore at [C:\Users\Alex\Documents\fyp\solr-9.0.0\server\solr\images], dataDir=[C:\Users\Alex\Documents\fyp\solr-9.0.0\server\solr\images\data\]
+2024-03-01 04:41:11.161 INFO  (qtp318353283-72) [] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json} status=0 QTime=141
+2024-03-01 04:41:31.834 WARN  (coreLoadExecutor-10-thread-1) [ x:images] o.a.s.h.a.SystemInfoHandler Resolving canonical hostname for local host took 19.800 seconds, possible DNS misconfiguration. Set the 'solr.dns.prevent.reverse.lookup'  sysprop to true on startup to prevent future lookups if DNS can not be fixed.
+2024-03-01 04:41:31.989 INFO  (coreLoadExecutor-10-thread-1) [ x:images] o.a.s.u.UpdateHandler Using UpdateLog implementation: org.apache.solr.update.UpdateLog
+2024-03-01 04:41:31.989 INFO  (coreLoadExecutor-10-thread-1) [ x:images] o.a.s.u.UpdateLog Initializing UpdateLog: dataDir= defaultSyncLevel=FLUSH numRecordsToKeep=100 maxNumLogsToKeep=10 numVersionBuckets=65536
+2024-03-01 04:41:32.015 INFO  (coreLoadExecutor-10-thread-1) [ x:images] o.a.s.u.CommitTracker Hard AutoCommit: if uncommitted for 15000ms; 
+2024-03-01 04:41:32.015 INFO  (coreLoadExecutor-10-thread-1) [ x:images] o.a.s.u.CommitTracker Soft AutoCommit: disabled
+2024-03-01 04:41:32.310 INFO  (coreLoadExecutor-10-thread-1) [ x:images] o.a.s.r.ManagedResourceStorage File-based storage initialized to use dir: C:\Users\Alex\Documents\fyp\solr-9.0.0\server\solr\images\conf
+2024-03-01 04:41:32.326 INFO  (coreLoadExecutor-10-thread-1) [ x:images] o.a.s.s.DirectSolrSpellChecker init: {maxEdits=2, minPrefix=1, maxInspections=5, minQueryLength=4, accuracy=0.5, maxQueryFrequency=0.01, name=default, field=_text_, classname=solr.DirectSolrSpellChecker, distanceMeasure=internal}
+2024-03-01 04:41:32.335 INFO  (coreLoadExecutor-10-thread-1) [ x:images] o.a.s.h.ReplicationHandler Commits will be reserved for 10000 ms
+2024-03-01 04:41:32.349 INFO  (searcherExecutor-12-thread-1-processing-images) [ x:images] o.a.s.c.QuerySenderListener QuerySenderListener done.
+2024-03-01 04:41:32.349 INFO  (searcherExecutor-12-thread-1-processing-images) [ x:images] o.a.s.h.c.SpellCheckComponent Loading spell index for spellchecker: default
+2024-03-01 04:41:32.356 INFO  (searcherExecutor-12-thread-1-processing-images) [ x:images] o.a.s.c.SolrCore Registered new searcher autowarm time: 0 ms

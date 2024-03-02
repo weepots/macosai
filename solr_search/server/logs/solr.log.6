@@ -1,0 +1,99 @@
+2024-02-27 03:01:50.976 INFO  (main) [] o.e.j.u.log Logging initialized @6292ms to org.eclipse.jetty.util.log.Slf4jLog
+2024-02-27 03:01:51.253 INFO  (main) [] o.e.j.s.Server jetty-9.4.44.v20210927; built: 2021-09-27T23:02:44.612Z; git: 8da83308eeca865e495e53ef315a249d63ba9332; jvm 19.0.2+7-44
+2024-02-27 03:01:51.861 INFO  (main) [] o.a.s.s.CoreContainerProvider Using logger factory org.apache.logging.slf4j.Log4jLoggerFactory
+2024-02-27 03:01:51.879 INFO  (main) [] o.a.s.s.CoreContainerProvider  ___      _       Welcome to Apache Solr™ version 9.0.0
+2024-02-27 03:01:51.879 INFO  (main) [] o.a.s.s.CoreContainerProvider / __| ___| |_ _   Starting in standalone mode on port 8983
+2024-02-27 03:01:51.879 INFO  (main) [] o.a.s.s.CoreContainerProvider \__ \/ _ \ | '_|  Install dir: C:\Users\Alex\Documents\fyp\solr-9.0.0
+2024-02-27 03:01:51.880 INFO  (main) [] o.a.s.s.CoreContainerProvider |___/\___/_|_|    Start time: 2024-02-27T03:01:51.880205800Z
+2024-02-27 03:01:51.890 INFO  (main) [] o.a.s.s.CoreContainerProvider Solr Home: C:\Users\Alex\Documents\fyp\solr-9.0.0\server\solr (source: system property: solr.solr.home)
+2024-02-27 03:01:51.893 INFO  (main) [] o.a.s.c.SolrXmlConfig Loading solr.xml from C:\Users\Alex\Documents\fyp\solr-9.0.0\server\solr\solr.xml
+2024-02-27 03:01:52.815 WARN  (main) [] o.a.s.u.StartupLoggingUtils Jetty request logging enabled. Will retain logs for last 3 days. See chapter "Configuring Logging" in reference guide for how to configure.
+2024-02-27 03:01:52.825 WARN  (main) [] o.a.s.c.CoreContainer Not all security plugins configured!  authentication=disabled authorization=disabled.  Solr is only as secure as you make it. Consider configuring authentication/authorization before exposing Solr to users internal or external.  See https://s.apache.org/solrsecurity for more info
+2024-02-27 03:02:12.761 WARN  (main) [] o.a.s.h.a.SystemInfoHandler Resolving canonical hostname for local host took 19.799 seconds, possible DNS misconfiguration. Set the 'solr.dns.prevent.reverse.lookup'  sysprop to true on startup to prevent future lookups if DNS can not be fixed.
+2024-02-27 03:02:12.926 INFO  (main) [] o.a.s.c.CorePropertiesLocator Found 1 core definitions underneath C:\Users\Alex\Documents\fyp\solr-9.0.0\server\solr
+2024-02-27 03:02:12.926 INFO  (main) [] o.a.s.c.CorePropertiesLocator Cores are: [images]
+2024-02-27 03:02:12.932 INFO  (coreLoadExecutor-10-thread-1) [] o.a.s.c.TransientSolrCoreCacheDefault Allocating transient core cache for max 2147483647 cores with initial capacity of 1024
+2024-02-27 03:02:12.981 INFO  (coreLoadExecutor-10-thread-1) [ x:images] o.a.s.c.SolrConfig Using Lucene MatchVersion: 9.0.0
+2024-02-27 03:02:13.070 INFO  (coreLoadExecutor-10-thread-1) [ x:images] o.a.s.s.IndexSchema Schema name=default-config
+2024-02-27 03:02:13.243 INFO  (main) [] o.e.j.s.h.ContextHandler Started o.e.j.w.WebAppContext@1cf2fed4{/solr,file:///C:/Users/Alex/Documents/fyp/solr-9.0.0/server/solr-webapp/webapp/,AVAILABLE}{C:\Users\Alex\Documents\fyp\solr-9.0.0\server/solr-webapp/webapp}
+2024-02-27 03:02:13.253 INFO  (main) [] o.e.j.s.RequestLogWriter Opened C:\Users\Alex\Documents\fyp\solr-9.0.0\server\logs\2024_02_27.request.log
+2024-02-27 03:02:13.275 INFO  (main) [] o.e.j.s.AbstractConnector Started ServerConnector@339bf286{HTTP/1.1, (http/1.1, h2c)}{127.0.0.1:8983}
+2024-02-27 03:02:13.275 INFO  (main) [] o.e.j.s.Server Started @28593ms
+2024-02-27 03:02:13.732 INFO  (coreLoadExecutor-10-thread-1) [ x:images] o.a.s.s.IndexSchema Loaded schema default-config/1.6 with uniqueid field id
+2024-02-27 03:02:13.732 INFO  (coreLoadExecutor-10-thread-1) [ x:images] o.a.s.c.CoreContainer Creating SolrCore 'images' using configuration from instancedir C:\Users\Alex\Documents\fyp\solr-9.0.0\server\solr\images, trusted=true
+2024-02-27 03:02:13.799 INFO  (coreLoadExecutor-10-thread-1) [ x:images] o.a.s.c.SolrCore Opening new SolrCore at [C:\Users\Alex\Documents\fyp\solr-9.0.0\server\solr\images], dataDir=[C:\Users\Alex\Documents\fyp\solr-9.0.0\server\solr\images\data\]
+2024-02-27 03:02:14.530 INFO  (qtp318353283-73) [] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json} status=0 QTime=46
+2024-02-27 03:02:34.223 WARN  (coreLoadExecutor-10-thread-1) [ x:images] o.a.s.h.a.SystemInfoHandler Resolving canonical hostname for local host took 19.798 seconds, possible DNS misconfiguration. Set the 'solr.dns.prevent.reverse.lookup'  sysprop to true on startup to prevent future lookups if DNS can not be fixed.
+2024-02-27 03:02:34.403 INFO  (coreLoadExecutor-10-thread-1) [ x:images] o.a.s.u.UpdateHandler Using UpdateLog implementation: org.apache.solr.update.UpdateLog
+2024-02-27 03:02:34.403 INFO  (coreLoadExecutor-10-thread-1) [ x:images] o.a.s.u.UpdateLog Initializing UpdateLog: dataDir= defaultSyncLevel=FLUSH numRecordsToKeep=100 maxNumLogsToKeep=10 numVersionBuckets=65536
+2024-02-27 03:02:34.426 INFO  (coreLoadExecutor-10-thread-1) [ x:images] o.a.s.u.CommitTracker Hard AutoCommit: if uncommitted for 15000ms; 
+2024-02-27 03:02:34.426 INFO  (coreLoadExecutor-10-thread-1) [ x:images] o.a.s.u.CommitTracker Soft AutoCommit: disabled
+2024-02-27 03:02:34.687 INFO  (coreLoadExecutor-10-thread-1) [ x:images] o.a.s.r.ManagedResourceStorage File-based storage initialized to use dir: C:\Users\Alex\Documents\fyp\solr-9.0.0\server\solr\images\conf
+2024-02-27 03:02:34.705 INFO  (coreLoadExecutor-10-thread-1) [ x:images] o.a.s.s.DirectSolrSpellChecker init: {name=default, field=_text_, classname=solr.DirectSolrSpellChecker, distanceMeasure=internal, maxEdits=2, minPrefix=1, maxInspections=5, minQueryLength=4, accuracy=0.5, maxQueryFrequency=0.01}
+2024-02-27 03:02:34.715 INFO  (coreLoadExecutor-10-thread-1) [ x:images] o.a.s.h.ReplicationHandler Commits will be reserved for 10000 ms
+2024-02-27 03:02:34.727 INFO  (searcherExecutor-12-thread-1-processing-images) [ x:images] o.a.s.c.QuerySenderListener QuerySenderListener done.
+2024-02-27 03:02:34.727 INFO  (searcherExecutor-12-thread-1-processing-images) [ x:images] o.a.s.h.c.SpellCheckComponent Loading spell index for spellchecker: default
+2024-02-27 03:02:34.732 INFO  (searcherExecutor-12-thread-1-processing-images) [ x:images] o.a.s.c.SolrCore Registered new searcher autowarm time: 0 ms
+2024-02-27 03:03:54.059 INFO  (qtp318353283-48) [ x:images] o.a.s.c.S.Request webapp=/solr path=/select params={} hits=2 status=0 QTime=43
+2024-02-27 03:12:17.199 INFO  (qtp318353283-77) [] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1709002796579} status=0 QTime=1
+2024-02-27 03:12:17.241 INFO  (qtp318353283-49) [] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1709002796579} status=0 QTime=38
+2024-02-27 03:12:17.251 INFO  (qtp318353283-77) [] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={wt=json&_=1709002796579} status=0 QTime=5
+2024-02-27 03:12:17.273 INFO  (qtp318353283-49) [] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1709002796579} status=0 QTime=0
+2024-02-27 03:12:17.308 INFO  (qtp318353283-77) [] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1709002796579} status=0 QTime=30
+2024-02-27 03:12:17.316 INFO  (qtp318353283-49) [] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={wt=json&_=1709002796579} status=0 QTime=3
+2024-02-27 03:31:38.424 INFO  (qtp318353283-83) [] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1709002796579} status=0 QTime=0
+2024-02-27 03:31:38.429 INFO  (qtp318353283-53) [] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={wt=json&_=1709002796579} status=0 QTime=4
+2024-02-27 03:31:38.454 INFO  (qtp318353283-80) [] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1709002796579} status=0 QTime=0
+2024-02-27 03:31:38.459 INFO  (qtp318353283-50) [] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={wt=json&_=1709002796579} status=0 QTime=5
+2024-02-27 03:31:38.465 INFO  (qtp318353283-88) [] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1709002796579} status=0 QTime=40
+2024-02-27 03:31:38.497 INFO  (qtp318353283-82) [] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1709002796579} status=0 QTime=29
+2024-02-27 03:31:44.390 INFO  (qtp318353283-47) [] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1709002796579} status=0 QTime=0
+2024-02-27 03:31:44.407 INFO  (qtp318353283-50) [ x:images] o.a.s.c.S.Request webapp=/solr path=/select params={q=*:*&indent=true&q.op=OR&_=1709002796793} hits=3 status=0 QTime=18
+2024-02-27 03:31:44.430 INFO  (qtp318353283-87) [] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1709002796579} status=0 QTime=40
+2024-02-27 03:32:55.306 INFO  (searcherExecutor-12-thread-1-processing-images) [ x:images] o.a.s.c.QuerySenderListener QuerySenderListener done.
+2024-02-27 03:32:55.315 INFO  (searcherExecutor-12-thread-1-processing-images) [ x:images] o.a.s.c.SolrCore Registered new searcher autowarm time: 4 ms
+2024-02-27 03:32:55.326 INFO  (qtp318353283-73) [ x:images] o.a.s.u.p.LogUpdateProcessorFactory webapp=/solr path=/update params={commit=true}{delete=[4717fbfd-be13-4304-9249-b551022648f3 (-1792021391224078336)], commit=} 0 76
+2024-02-27 03:33:34.636 INFO  (searcherExecutor-12-thread-1-processing-images) [ x:images] o.a.s.c.QuerySenderListener QuerySenderListener done.
+2024-02-27 03:33:34.640 INFO  (searcherExecutor-12-thread-1-processing-images) [ x:images] o.a.s.c.SolrCore Registered new searcher autowarm time: 0 ms
+2024-02-27 03:33:34.641 INFO  (qtp318353283-77) [ x:images] o.a.s.u.p.LogUpdateProcessorFactory webapp=/solr path=/update params={commit=true}{delete=[4717fbfd-be13-4304-9249-b551022648f3 (-1792021432496029696)], commit=} 0 20
+2024-02-27 03:33:38.467 INFO  (qtp318353283-83) [] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1709002796579} status=0 QTime=0
+2024-02-27 03:33:38.469 INFO  (qtp318353283-80) [ x:images] o.a.s.c.S.Request webapp=/solr path=/select params={q=*:*&indent=true&q.op=OR&_=1709002796793} hits=2 status=0 QTime=1
+2024-02-27 03:33:38.528 INFO  (qtp318353283-82) [] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1709002796579} status=0 QTime=62
+2024-02-27 03:34:05.293 INFO  (searcherExecutor-12-thread-1-processing-images) [ x:images] o.a.s.c.QuerySenderListener QuerySenderListener done.
+2024-02-27 03:34:05.297 INFO  (searcherExecutor-12-thread-1-processing-images) [ x:images] o.a.s.c.SolrCore Registered new searcher autowarm time: 0 ms
+2024-02-27 03:34:05.298 INFO  (qtp318353283-47) [ x:images] o.a.s.u.p.LogUpdateProcessorFactory webapp=/solr path=/update params={commit=true}{delete=[864b9391-36f2-448f-983c-0d796f1fb5403 (-1792021464643272704)], commit=} 0 19
+2024-02-27 03:34:31.427 INFO  (searcherExecutor-12-thread-1-processing-images) [ x:images] o.a.s.c.QuerySenderListener QuerySenderListener done.
+2024-02-27 03:34:31.432 INFO  (searcherExecutor-12-thread-1-processing-images) [ x:images] o.a.s.c.SolrCore Registered new searcher autowarm time: 0 ms
+2024-02-27 03:34:31.433 INFO  (qtp318353283-52) [ x:images] o.a.s.u.p.LogUpdateProcessorFactory webapp=/solr path=/update params={commit=true}{delete=[2dfc307e-9dee-4d7f-84e7-f5dbf0a5d4c (-1792021492047806464)], commit=} 0 19
+2024-02-27 03:34:34.154 INFO  (qtp318353283-47) [] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1709002796579} status=0 QTime=0
+2024-02-27 03:34:34.156 INFO  (qtp318353283-88) [ x:images] o.a.s.c.S.Request webapp=/solr path=/select params={q=*:*&indent=true&q.op=OR&_=1709002796793} hits=2 status=0 QTime=0
+2024-02-27 03:34:34.194 INFO  (qtp318353283-82) [] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1709002796579} status=0 QTime=41
+2024-02-27 03:34:51.695 INFO  (searcherExecutor-12-thread-1-processing-images) [ x:images] o.a.s.c.QuerySenderListener QuerySenderListener done.
+2024-02-27 03:34:51.700 INFO  (searcherExecutor-12-thread-1-processing-images) [ x:images] o.a.s.c.SolrCore Registered new searcher autowarm time: 0 ms
+2024-02-27 03:34:51.705 INFO  (qtp318353283-73) [ x:images] o.a.s.u.p.LogUpdateProcessorFactory webapp=/solr path=/update params={commit=true}{delete=[864b9391-36f2-448f-983c-0d796f1fb540 (-1792021513303490560)], commit=} 0 20
+2024-02-27 03:34:56.767 INFO  (qtp318353283-80) [] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1709002796579} status=0 QTime=0
+2024-02-27 03:34:56.767 INFO  (qtp318353283-50) [ x:images] o.a.s.c.S.Request webapp=/solr path=/select params={q=*:*&indent=true&q.op=OR&_=1709002796793} hits=1 status=0 QTime=0
+2024-02-27 03:34:56.800 INFO  (qtp318353283-83) [] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1709002796579} status=0 QTime=34
+2024-02-27 03:35:17.237 INFO  (searcherExecutor-12-thread-1-processing-images) [ x:images] o.a.s.c.QuerySenderListener QuerySenderListener done.
+2024-02-27 03:35:17.240 INFO  (searcherExecutor-12-thread-1-processing-images) [ x:images] o.a.s.c.SolrCore Registered new searcher autowarm time: 0 ms
+2024-02-27 03:35:17.246 INFO  (qtp318353283-77) [ x:images] o.a.s.u.p.LogUpdateProcessorFactory webapp=/solr path=/update params={commit=true}{delete=[2dfc307e-9dee-4d7f-84e7-f5dbf0a5d4c5 (-1792021540089364480)], commit=} 0 16
+2024-02-27 03:35:23.721 INFO  (qtp318353283-88) [] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1709002796579} status=0 QTime=0
+2024-02-27 03:35:23.722 INFO  (qtp318353283-87) [ x:images] o.a.s.c.S.Request webapp=/solr path=/select params={q=*:*&indent=true&q.op=OR&_=1709002796793} hits=0 status=0 QTime=1
+2024-02-27 03:35:23.760 INFO  (qtp318353283-47) [] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1709002796579} status=0 QTime=39
+2024-02-27 04:05:56.796 INFO  (qtp318353283-77) [] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1709002796579} status=0 QTime=0
+2024-02-27 04:05:56.797 INFO  (qtp318353283-80) [ x:images] o.a.s.c.S.Request webapp=/solr path=/select params={q=*:*&indent=true&q.op=OR&_=1709002796793} hits=0 status=0 QTime=0
+2024-02-27 04:05:56.844 INFO  (qtp318353283-83) [] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1709002796579} status=0 QTime=47
+2024-02-27 04:08:38.252 INFO  (searcherExecutor-12-thread-1-processing-images) [ x:images] o.a.s.c.QuerySenderListener QuerySenderListener done.
+2024-02-27 04:08:38.258 INFO  (searcherExecutor-12-thread-1-processing-images) [ x:images] o.a.s.c.SolrCore Registered new searcher autowarm time: 0 ms
+2024-02-27 04:08:38.259 INFO  (qtp318353283-95) [ x:images] o.a.s.u.p.LogUpdateProcessorFactory webapp=/solr path=/update/json/docs params={commit=true}{add=[cea51a03-7ce0-4094-8f0b-066ee9e394e8 (1792023638162014208)], commit=} 0 163
+2024-02-27 04:08:58.794 INFO  (searcherExecutor-12-thread-1-processing-images) [ x:images] o.a.s.c.QuerySenderListener QuerySenderListener done.
+2024-02-27 04:08:58.799 INFO  (searcherExecutor-12-thread-1-processing-images) [ x:images] o.a.s.c.SolrCore Registered new searcher autowarm time: 0 ms
+2024-02-27 04:08:58.800 INFO  (qtp318353283-47) [ x:images] o.a.s.u.p.LogUpdateProcessorFactory webapp=/solr path=/update/json/docs params={commit=true}{add=[ca3eb9dd-0239-4e95-9495-eb4b09ce7a64 (1792023659801477120)], commit=} 0 55
+2024-02-27 04:37:19.148 INFO  (qtp318353283-47) [ x:images] o.a.s.c.S.Request webapp=/solr path=/select params={} hits=2 status=0 QTime=2
+2024-02-27 04:38:01.125 INFO  (qtp318353283-83) [ x:images] o.a.s.c.S.Request webapp=/solr path=/select params={} hits=2 status=0 QTime=2
+2024-02-27 04:39:37.803 INFO  (qtp318353283-82) [ x:images] o.a.s.c.S.Request webapp=/solr path=/select params={} hits=2 status=0 QTime=1
+2024-02-27 04:40:12.483 INFO  (qtp318353283-100) [ x:images] o.a.s.c.S.Request webapp=/solr path=/select params={} hits=2 status=0 QTime=1
+2024-02-27 04:41:22.773 INFO  (qtp318353283-71) [ x:images] o.a.s.c.S.Request webapp=/solr path=/select params={} hits=2 status=0 QTime=1
+2024-02-27 04:41:35.311 INFO  (qtp318353283-73) [ x:images] o.a.s.c.S.Request webapp=/solr path=/select params={} hits=2 status=0 QTime=1
+2024-02-27 04:43:10.018 INFO  (qtp318353283-47) [ x:images] o.a.s.c.S.Request webapp=/solr path=/select params={} hits=2 status=0 QTime=1
+2024-02-27 04:44:19.892 INFO  (qtp318353283-83) [ x:images] o.a.s.c.S.Request webapp=/solr path=/select params={fl=url} hits=2 status=0 QTime=1

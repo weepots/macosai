@@ -1,0 +1,10 @@
+Java HotSpot(TM) 64-Bit Server VM warning: -XX:+UseLargePages not supported in this VM
+WARNING: A command line option has enabled the Security Manager
+WARNING: The Security Manager is deprecated and will be removed in a future release
+2024-03-01 10:12:32.350 INFO  (main) [] o.e.j.u.log Logging initialized @616ms to org.eclipse.jetty.util.log.Slf4jLog
+2024-03-01 10:12:32.468 INFO  (main) [] o.e.j.s.Server jetty-9.4.44.v20210927; built: 2021-09-27T23:02:44.612Z; git: 8da83308eeca865e495e53ef315a249d63ba9332; jvm 19+36-2238
+2024-03-01 10:12:32.634 INFO  (main) [] o.a.s.s.CoreContainerProvider Using logger factory org.apache.logging.slf4j.Log4jLoggerFactory
+2024-03-01 10:12:32.639 INFO  (main) [] o.a.s.s.CoreContainerProvider  ___      _       Welcome to Apache Solr™ version 9.0.0
+2024-03-01 10:12:32.639 INFO  (main) [] o.a.s.s.CoreContainerProvider / __| ___| |_ _   Starting in standalone mode on port 8983
+2024-03-01 10:12:32.639 INFO  (main) [] o.a.s.s.CoreContainerProvider \__ \/ _ \ | '_|  Install dir: /Users/alexander/Documents/fyp/macosai/solr-9.0.0
+2024-03-01 10:12:32.639 INFO  (main) [] o.a.s.s.CoreContainerProvider |___/\___/_|_|    Start time: 2024-03-01T10:12:32.639607Z
