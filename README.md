@@ -61,7 +61,7 @@ git clone https://github.com/weepots/coreml_server/tree/32cbd0b58b3c316f73b7a033
 
 ```
 cd coreml_server
-code .
+xcode open Package.swift
 ```
 
 Build and Run in Xcode
