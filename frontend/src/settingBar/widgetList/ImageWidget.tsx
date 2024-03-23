@@ -33,9 +33,25 @@ const ImageWidget: React.FC = () => {
     setImageAssetList(allImageAsset);
   }, [allImageAsset]);
 
+  const checkFileSize = (s: string, maxSize: number) => {
+    const num_bytes = s.length;
+
+    if (num_bytes > maxSize * 1000000) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
   const uploadImage = () => {
     const fileReader = new FileReader();
+    const max_file_size = 10;
     fileReader.onload = () => {
+      const temp = fileReader.result as string;
+      if (checkFileSize(temp, max_file_size) === false) {
+        window.alert(`Maximum File size Exceeded: ${max_file_size}MB.`);
+        return false;
+      }
       setImageAssetList((prev) => {
         const result = [
           {
@@ -47,6 +63,7 @@ const ImageWidget: React.FC = () => {
           ...prev,
         ];
         setImageAsset(result);
+        window.alert(`Image file successfully added to the Asset List.`);
         return result;
       });
     };
@@ -66,24 +83,29 @@ const ImageWidget: React.FC = () => {
 
   return (
     <Col className={[sizeStyles["mx-h-30vh"]].join(" ")}>
-      <Row>
-        <h6>
-          {getTranslation("widget", "image", "name")}
-          <Button
-            className={[
-              colorStyles.transparentDarkColorTheme,
-              borderStyles.none,
-              displayStyles["inline-block"],
-              sizeStyles.width25,
-              spaceStyles.p0,
-              spaceStyles.ml1rem,
-              alignStyles["text-left"],
-            ].join(" ")}
-            onClick={uploadImage}
-          >
-            <i className="bi-plus" />
-          </Button>
-        </h6>
+      <Row className={[alignStyles["absoluteCenter"]].join(" ")}>
+        <Button
+          className={[
+            colorStyles.greyTheme,
+            borderStyles.none,
+            displayStyles["inline-block"],
+            sizeStyles.width80,
+            alignStyles["absoluteCenter"],
+            spaceStyles.pt1rem,
+          ].join(" ")}
+          onClick={uploadImage}
+        >
+          <h6>Add Image to Assets</h6>
+          {/* <Row>
+            <Col xs={1}>
+              <i className="bi-plus" />
+            </Col>
+            <Col className={[alignStyles["absolute-center"]].join(" ")}>
+              <h6>Add Image to Assets</h6>
+            </Col>
+          </Row> */}
+        </Button>
+        <h6 className="mt-3">Asset List</h6>
       </Row>
       <Row xs={2}>
         {imageAssetList.map((_data) => (

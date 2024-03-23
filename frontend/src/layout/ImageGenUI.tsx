@@ -13,18 +13,59 @@ const ImageGenUI: React.FC = () => {
   const [prompt, setPrompt] = useState("Astronaut riding a horse");
   const { setImageAsset, getAllImageAsset } = useImageAsset();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [seed, setSeed] = useState("93");
+  const [seed, setSeed] = useState(93);
   const [numImages, setNumImages] = useState<string>("1");
   const [base64Images, setBase64Images] = useState<string[]>([]);
+
+  const [seedInvalid, setSeedInvalid] = useState<boolean>(false);
+  const [seedErrorMessage, setSeedErrorMessage] = useState<string>("");
+
+  const [promptInvalid, setPromptInvalid] = useState<boolean>(false);
+  const [promptErrorMessage, setPromptErrorMessage] = useState<string>("");
 
   useEffect(() => {
     console.log(base64Images.length);
   }, [base64Images]);
+
+  const checkPromptInvalid = (prompt: string) => {
+    if (prompt.length > 100) {
+      setPromptErrorMessage("Prompt cannot be greater than 100 characters");
+      setPromptInvalid(true);
+      return true;
+    } else if (prompt.length === 0) {
+      setPrompt("Astronaut riding a horse");
+    } else {
+      setPromptInvalid(false);
+      return false;
+    }
+  };
   const changePrompt = (e: React.BaseSyntheticEvent) => {
-    setPrompt(e.currentTarget.value as string);
+    if (checkPromptInvalid(e.currentTarget.value) === false) {
+      setPrompt(e.currentTarget.value as string);
+    }
+  };
+
+  const checkIfSeedInvalid = (seed: number) => {
+    const _ = seed.toString();
+    if (seed > 2 ** 31 || seed < 0 - 2 ** 31 || seed % 1 !== 0) {
+      if (seed % 1 !== 0) {
+        setSeedErrorMessage("Integer only.");
+      } else {
+        setSeedErrorMessage("Max/Min size exceeded.");
+      }
+      setSeedInvalid(true);
+      return true;
+    } else if (_.length === 0) {
+      setSeed(93);
+    } else {
+      setSeedInvalid(false);
+      return false;
+    }
   };
   const changeSeed = (e: React.BaseSyntheticEvent) => {
-    setSeed(e.currentTarget.value as string);
+    if (checkIfSeedInvalid(e.currentTarget.value) === false) {
+      setSeed(e.currentTarget.value);
+    }
   };
 
   const handleDropdownSelect = (eventKey: string | null) => {
@@ -35,7 +76,7 @@ const ImageGenUI: React.FC = () => {
   };
 
   const handleSubmit = () => {
-    stableDiffusionAPI(prompt, seed, numImages);
+    stableDiffusionAPI(prompt, seed.toString(), numImages);
   };
 
   const addToProjectHandler = (event: React.MouseEvent) => {
@@ -50,6 +91,7 @@ const ImageGenUI: React.FC = () => {
       },
     ];
     setImageAsset(result);
+    setSeedErrorMessage("Image added to Asset List.");
   };
 
   function base64ToImageObjectURL(base64String: string) {
@@ -111,11 +153,13 @@ const ImageGenUI: React.FC = () => {
           <Row>
             <Col xs={8}>
               <Form.Label>Prompt</Form.Label>
-              <Form.Control onChange={changePrompt} type="text" placeholder={prompt} />
+              <Form.Control onChange={changePrompt} type="text" placeholder={prompt} isInvalid={promptInvalid} />
+              {promptInvalid && <Form.Text className="text-danger">{promptErrorMessage}</Form.Text>}
             </Col>
             <Col>
               <Form.Label>Seed</Form.Label>
-              <Form.Control onChange={changeSeed} type="text" placeholder={seed.toString()} />
+              <Form.Control onChange={changeSeed} type="text" placeholder={seed.toString()} isInvalid={seedInvalid} />
+              {seedInvalid && <Form.Text className="text-danger">{seedErrorMessage}</Form.Text>}
             </Col>
           </Row>
         </Form.Group>
@@ -136,8 +180,8 @@ const ImageGenUI: React.FC = () => {
             </Dropdown>
           </Col>
           <Col align="end">
-            <Button onClick={handleSubmit} disabled={isLoading}>
-              Submit Query
+            <Button onClick={handleSubmit} disabled={isLoading || seedInvalid || promptInvalid}>
+              Generate Image
             </Button>
           </Col>
           {isLoading && (
@@ -154,7 +198,7 @@ const ImageGenUI: React.FC = () => {
               <Figure.Image width={200} height={200} alt="171x180" src={item} />
               <div className={[spaceStyles["ml1rem"]].join(" ")}>
                 <Button id={`${index}`} onClick={addToProjectHandler}>
-                  Add to Project
+                  Add to Asset List
                 </Button>
               </div>
             </Figure>

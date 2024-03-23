@@ -30,9 +30,5 @@
   {
     "id": "export",
     "name": "Export"
-  },
-  {
-    "id":"aiGen",
-    "name": "AI Generate"
   }
 ]

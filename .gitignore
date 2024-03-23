@@ -32,3 +32,4 @@
 /clip_service/__pycache__
 /solr_search/server/logs/
 /solr_search/bin/solr-8983.pid
+/solr_search/server/logs

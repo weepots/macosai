@@ -20,10 +20,27 @@ const ImageSearchTextComponent: React.FC = () => {
   const [imageURLList, setImageURLList] = useState<string[]>([]);
   const [numImages, setNumImages] = useState<string>("1");
   const { setImageAsset } = useImageAsset();
+  const [searchTextInvalid, setSearchTextInvalid] = useState<boolean>(false);
+  const [searchTextErrorMessage, setSearchTextErrorMessage] = useState<string>("");
   // useEffect(() => {}, [base64Images]);
   useEffect(() => {}, [imageURLList]);
+
+  const checkSearchTextInvalid = (searchText: string) => {
+    if (searchText.length > 100) {
+      setSearchTextErrorMessage("The search text cannot be greater than 100 characters.");
+      setSearchTextInvalid(true);
+      return true;
+    } else if (searchText.length === 0) {
+      setSearchText("Astronaut riding a horse");
+    } else {
+      setSearchTextInvalid(false);
+      return false;
+    }
+  };
   const changeSearchText = (e: React.BaseSyntheticEvent) => {
-    setSearchText(e.currentTarget.value as string);
+    if (checkSearchTextInvalid(e.currentTarget.value) === false) {
+      setSearchText(e.currentTarget.value as string);
+    }
   };
   const handleDropdownSelect = (eventKey: string | null) => {
     // Update the state when a new option is selected
@@ -31,6 +48,7 @@ const ImageSearchTextComponent: React.FC = () => {
       setNumImages(eventKey);
     }
   };
+
   const handleSubmit = () => {
     imageSearchTextAPI(searchText, numImages);
   };
@@ -55,6 +73,7 @@ const ImageSearchTextComponent: React.FC = () => {
       },
     ];
     setImageAsset(result);
+    window.alert("Image added to Asset List.");
   };
   const imageSearchTextAPI = async (searchText: string, numImages: string) => {
     console.log(searchText);
@@ -83,7 +102,13 @@ const ImageSearchTextComponent: React.FC = () => {
           <Row>
             <Col>
               <Form.Label>Search Image with Text</Form.Label>
-              <Form.Control onChange={changeSearchText} type="text" placeholder={searchText} />
+              <Form.Control
+                onChange={changeSearchText}
+                type="text"
+                placeholder={searchText}
+                isInvalid={searchTextInvalid}
+              />
+              {searchTextInvalid && <Form.Text className="text-danger">{searchTextErrorMessage}</Form.Text>}
             </Col>
           </Row>
         </Form.Group>
@@ -104,7 +129,7 @@ const ImageSearchTextComponent: React.FC = () => {
             </Dropdown>
           </Col>
           <Col align="end">
-            <Button onClick={handleSubmit} disabled={isLoading}>
+            <Button onClick={handleSubmit} disabled={isLoading || searchTextInvalid}>
               Search Image from Text
             </Button>
           </Col>
@@ -122,7 +147,7 @@ const ImageSearchTextComponent: React.FC = () => {
               <Figure.Image width={200} height={200} alt="171x180" src={item} />
               <div className={[spaceStyles["ml1rem"]].join(" ")}>
                 <Button id={`${index}`} onClick={addToProjectHandler}>
-                  Add to Project
+                  Add to Asset List
                 </Button>
               </div>
             </Figure>

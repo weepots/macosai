@@ -55,6 +55,7 @@ const useTool = (
             ...attrs,
             src: base64,
           }));
+          window.alert("Background Removal Success!")
         });
       };
 
@@ -84,7 +85,9 @@ const useTool = (
             ...attrs,
             src: base64,
           }));
+          window.alert("Image upscale success!")
         });
+
       };
 
       const { attrs } = selectedItems[0];

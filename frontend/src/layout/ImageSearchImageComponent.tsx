@@ -30,21 +30,43 @@ const ImageSearchImageComponent: React.FC = () => {
   const [imageURLList, setImageURLList] = useState<string[]>([]);
   const [numImages, setNumImages] = useState<string>("1");
   const { setImageAsset } = useImageAsset();
+
+  const [inputInvalid, setInputInvalid] = useState<boolean>(true);
+  const [inputInvalidErrorMessage, setInputInvalidErrorMessage] = useState<string>("No input image selected");
   // useEffect(() => {}, [base64Images]);
-  useEffect(() => {
-    console.log(searchImage);
-  }, [searchImage]);
+
+  // const checkInputValid = (image: string) => {
+  //   if (image.length === 0) {
+  //     setInputInvalid(true);
+  //     return true;
+  //   } else {
+  //   }
+  // };
+
+  useEffect(() => {}, [searchImage]);
   useEffect(() => {}, [imageURLList]);
+
   const handleDropdownSelect = (eventKey: string | null) => {
     // Update the state when a new option is selected
     if (eventKey !== null) {
       setNumImages(eventKey);
     }
   };
-
   const handleChooseFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const max_file_size = 10;
     if (event.target.files && event.target.files[0]) {
+      console.log(event.target.files[0].size);
+      if (event.target.files[0].size > 1000000 * max_file_size) {
+        setInputInvalid(true);
+        setInputInvalidErrorMessage(`Maximum File size Exceeded: ${max_file_size}MB`);
+        return;
+      }
+      setInputInvalid(false);
       setSearchImage(URL.createObjectURL(event.target.files[0]));
+    } else {
+      setInputInvalid(true);
+      setInputInvalidErrorMessage("No input image selected");
+      setSearchImage("");
     }
   };
   // function blobToBase64(blob) {
@@ -81,7 +103,7 @@ const ImageSearchImageComponent: React.FC = () => {
     imageSearchImageAPI(base64Image, numImages);
     setIsLoading(false);
 
-    // imageSearchTextAPI(searchImage, numImages);
+    // imageinputImageAPI(searchImage, numImages);
   };
   const addToProjectHandler = async (event: React.MouseEvent) => {
     const imageId = parseInt(event.currentTarget.id);
@@ -104,6 +126,7 @@ const ImageSearchImageComponent: React.FC = () => {
       },
     ];
     setImageAsset(result);
+    window.alert("Image added to Asset List.");
   };
   const imageSearchImageAPI = async (searchImage: string, numImages: string) => {
     try {
@@ -153,7 +176,8 @@ const ImageSearchImageComponent: React.FC = () => {
         <Col className="mt-3">
           {/* <Button className={[colourStyles.darkTheme].join(" ")}>Choose Image</Button> */}
           <Form.Group controlId="formFile" className="mb-3">
-            <Form.Control type="file" onChange={handleChooseFile} accept=".png,.jpg,.jpeg" />
+            <Form.Control type="file" onChange={handleChooseFile} accept=".png,.jpg,.jpeg" isInvalid={inputInvalid} />
+            {inputInvalid && <Form.Text className="text-danger">{inputInvalidErrorMessage}</Form.Text>}
           </Form.Group>
         </Col>
       </Row>
@@ -174,7 +198,7 @@ const ImageSearchImageComponent: React.FC = () => {
           </Dropdown>
         </Col>
         <Col align="end">
-          <Button onClick={handleSubmit} disabled={isLoading || !searchImage}>
+          <Button onClick={handleSubmit} disabled={isLoading || inputInvalid}>
             Search Image from Image
           </Button>
         </Col>
@@ -186,7 +210,7 @@ const ImageSearchImageComponent: React.FC = () => {
               <Figure.Image width={200} height={200} alt="171x180" src={item} />
               <div className={[spaceStyles["ml1rem"]].join(" ")}>
                 <Button id={`${index}`} onClick={addToProjectHandler}>
-                  Add to Project
+                  Add to Asset List
                 </Button>
               </div>
             </Figure>
